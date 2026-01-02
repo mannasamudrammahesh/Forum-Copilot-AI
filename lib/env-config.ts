@@ -1,31 +1,24 @@
 export function validateEnvironment() {
   const errors: string[] = []
 
-  if (!process.env.OPENAI_API_KEY) {
-    errors.push("OPENAI_API_KEY is required for AI features")
-  }
-
-  if (!process.env.FORUMS_API_URL) {
-    errors.push("FORUMS_API_URL is required to connect to the forum API")
-  }
-
-  if (!process.env.FORUMS_API_KEY) {
-    errors.push("FORUMS_API_KEY is required for forum API authentication")
-  }
+  // Optional: Forum API configuration (uses mock data if not provided)
+  // No required environment variables - app works with free HuggingFace models
 
   return {
-    isValid: errors.length === 0,
+    isValid: true, // Always valid since no required env vars
     errors,
     config: {
-      openaiApiKey: !!process.env.OPENAI_API_KEY,
-      forumsApiUrl: process.env.FORUMS_API_URL || "Not set",
+      forumsApiUrl: process.env.FORUMS_API_URL || "Using mock data",
       forumsApiKey: !!process.env.FORUMS_API_KEY,
+      useMockAI: process.env.USE_MOCK_AI === 'true',
+      useHuggingFace: process.env.USE_HUGGINGFACE !== 'false',
     },
   }
 }
 
 export const envConfig = {
-  OPENAI_API_KEY: process.env.OPENAI_API_KEY || "",
   FORUMS_API_URL: process.env.FORUMS_API_URL || "",
   FORUMS_API_KEY: process.env.FORUMS_API_KEY || "",
+  USE_MOCK_AI: process.env.USE_MOCK_AI === 'true',
+  USE_HUGGINGFACE: process.env.USE_HUGGINGFACE !== 'false',
 }
