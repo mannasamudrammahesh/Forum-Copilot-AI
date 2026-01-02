@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "env": {
+    "OPENAI_API_KEY": "@openai_api_key",
+    "FORUMS_API_URL": "@forums_api_url", 
+    "FORUMS_API_KEY": "@forums_api_key"
+  }
+}
